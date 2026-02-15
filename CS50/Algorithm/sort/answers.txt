@@ -1,0 +1,56 @@
+sort1 uses: bubble sort
+
+random5000: 0,052s
+random10000: 0,175s
+random50000: 6,064s
+
+reversed5000: 0,064s
+reversed10000: 0,226s
+reversed50000: 4,504s
+
+sorted5000: 0,038s
+sorted10000: 0,054s
+sorted50000: 0,985s
+
+How do you know?: The timings show a clear difference between the best case (sorted: 0.985s for 50,000 elements) and the worst cases (random: 6.064s and reversed: 4.504s for 50,000 elements).
+The increase from 0.038s for 5,000 elements to 0.985s for 50,000 elements in sorted lists (a ~25× factor) suggests a best-case time complexity of O(n), while the increase from 0.052s to
+6.064s in random lists (a ~116× factor) indicates a worst-case time complexity of O(n²). This pattern of performance varying according to the initial ordering is characteristic of
+bubble sort, especially when implemented with the optimization that stops early if no swaps are made.
+
+sort2 uses: merge sort
+
+random5000: 0,020s
+random10000: 0,041s
+random50000: 0,945s
+
+reversed5000: 0,019s
+reversed10000: 0,043s
+reversed50000: 0,958s
+
+sorted5000: 0,021s
+sorted10000: 0,044s
+sorted50000: 0,849s
+
+How do you know?: The timings are practically identical for all three types of input: random (0.945s), reversed (0.958s), and sorted (0.849s) for 50,000 elements. The increase
+from approximately 0.02s for 5,000 elements to 0.9s for 50,000 elements (a ~45× factor for 10× more elements) is consistent with the O(n log n) time complexity of merge sort. The performance
+being independent of the initial ordering is a fundamental characteristic of merge sort, which always follows the same divide-and-conquer approach.
+
+sort3 uses: selection sort
+
+random5000: 0,050s
+random10000: 0,144s
+random50000: 2,811s
+
+reversed5000: 0,045s
+reversed10000: 0,117s
+reversed50000: 2,905s
+
+sorted5000: 0,038s
+sorted10000: 0,135s
+sorted50000: 2,784s
+
+How do you know?: The timings are very similar in all cases: random (2.811s), reversed (2.905s), and sorted (2.784s) for 50,000 elements. The increase from approximately 0.045s for
+5,000 elements to 2.8s for 50,000 elements (a ~60–70× factor for 10× more elements) indicates O(n²) time complexity.
+
+Unlike bubble sort, selection sort does not benefit from partially sorted lists, since it always scans the entire array to find the smallest element, which explains the consistency of
+the timings regardless of the initial ordering. Additionally, it is slower than merge sort for large lists (2.8s vs. 0.9s for 50,000 elements), as expected for an O(n²) algorithm.
