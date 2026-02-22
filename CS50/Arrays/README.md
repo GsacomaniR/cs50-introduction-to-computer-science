@@ -39,7 +39,7 @@ Durante esta aula, foram abordados os seguintes conceitos:
 
 - Validação de argumentos da linha de comando
 
---
+---
 
 > readability.c
 
