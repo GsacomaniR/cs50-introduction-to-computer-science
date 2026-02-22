@@ -39,6 +39,8 @@ Durante esta aula, foram abordados os seguintes conceitos:
 
 - Validação de argumentos da linha de comando
 
+
+
 > readability.c
 Programa que calcula o nível de leitura de um texto utilizando a fórmula Coleman-Liau Index.
 
@@ -51,6 +53,8 @@ Conceitos utilizados:
 - Cálculo matemático com floats
 
 - Manipulação de strings
+
+  
 
 > scrabble.c
 
@@ -65,6 +69,8 @@ Conceitos utilizados:
 - Uso de toupper()
 
 Comparação de pontuações
+
+
 
 > substitution.c
 
