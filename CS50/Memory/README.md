@@ -23,31 +23,31 @@ Estrutura de pixels RGB
 Processamento de áudio
 Algoritmos de detecção de bordas
 Recuperação de arquivos apagados
-Projetos Desenvolvidos
-filter-less
+# Projetos Desenvolvidos
+# filter-less
 
-# Projeto responsável por aplicar filtros básicos em imagens .bmp.
+Projeto responsável por aplicar filtros básicos em imagens .bmp.
 
-Filtros Implementados
-Grayscale
+# Filtros Implementados
+# Grayscale
 
 Converte a imagem para escala de cinza utilizando a média dos valores RGB.
 
-Conceitos utilizados:
+# Conceitos utilizados:
 
 Manipulação de pixels
 Média aritmética
 Estruturas RGB
-Sepia
+# Sepia
 
 Aplica um efeito sépia à imagem utilizando fórmulas específicas para cada canal de cor.
 
-Conceitos utilizados:
+# Conceitos utilizados:
 
 Operações matemáticas
 Controle de limites (255)
 Conversão de cores
-Reflect
+# Reflect
 
 Reflete a imagem horizontalmente trocando os pixels de posição.
 
@@ -56,7 +56,7 @@ Conceitos utilizados:
 Troca de variáveis
 Percurso de arrays bidimensionais
 Manipulação de memória
-Blur
+# Blur
 
 Aplica um efeito de desfoque calculando a média dos pixels vizinhos.
 
@@ -65,11 +65,11 @@ Conceitos utilizados:
 Matrizes 2D
 Cópia temporária da imagem
 Algoritmo de suavização
-filter-more
+# filter-more
 
 Extensão do projeto anterior, adicionando filtros mais avançados.
 
-Edges (Sobel)
+# Edges (Sobel)
 
 Detecta bordas da imagem utilizando o algoritmo de Sobel.
 
@@ -95,7 +95,7 @@ recover
 
 Programa responsável por recuperar imagens JPEG apagadas de um cartão de memória forense.
 
-Funcionamento
+# Funcionamento
 
 O programa:
 
@@ -114,7 +114,7 @@ volume
 
 Programa que modifica o volume de arquivos .wav.
 
-Funcionamento
+# Funcionamento
 
 O programa:
 
@@ -122,9 +122,34 @@ Copia o cabeçalho do arquivo .wav
 Lê cada amostra de áudio
 Multiplica a amplitude por um fator definido pelo usuário
 Gera um novo arquivo com volume alterado
-Conceitos utilizados
+# Conceitos utilizados
 Manipulação de áudio
 Arquivos binários
 Cabeçalhos WAV
 Tipos inteiros (int16_t)
 Conversão de dados
+
+# Objetivo da Aula
+
+A aula de Memory teve como principal objetivo aprofundar o entendimento sobre:
+
+Como os dados são armazenados na memória
+Como imagens e áudios são representados digitalmente
+Como programas manipulam arquivos binários
+Como otimizar operações usando ponteiros
+# Aprendizado
+
+Esses projetos reforçam conceitos fundamentais da Ciência da Computação, especialmente:
+
+Gerenciamento de memória
+Processamento multimídia
+Estruturas binárias
+Eficiência computacional
+Manipulação de baixo nível
+
+Além disso, mostram aplicações reais da linguagem C em:
+
+Edição de imagens
+Processamento de áudio
+Recuperação de dados
+Computação forense
