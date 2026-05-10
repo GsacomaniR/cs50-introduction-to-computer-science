@@ -14,7 +14,7 @@ Leitura e escrita de arquivos .bmp e .wav
 
 Durante a aula de Memory, foram explorados conceitos fundamentais da linguagem C relacionados ao funcionamento interno do computador e da memória.
 
-## Principais tópicos:
+### Principais tópicos:
 Ponteiros (*)
 Endereços de memória (&)
 Manipulação de arrays multidimensionais
@@ -29,11 +29,11 @@ Recuperação de arquivos apagados
 Projeto responsável por aplicar filtros básicos em imagens .bmp.
 
 # Filtros Implementados
-# Grayscale
+### Grayscale
 
 Converte a imagem para escala de cinza utilizando a média dos valores RGB.
 
-# Conceitos utilizados:
+### Conceitos utilizados:
 
 Manipulação de pixels
 Média aritmética
@@ -42,7 +42,7 @@ Estruturas RGB
 
 Aplica um efeito sépia à imagem utilizando fórmulas específicas para cada canal de cor.
 
-# Conceitos utilizados:
+### Conceitos utilizados:
 
 Operações matemáticas
 Controle de limites (255)
@@ -51,7 +51,7 @@ Conversão de cores
 
 Reflete a imagem horizontalmente trocando os pixels de posição.
 
-Conceitos utilizados:
+### Conceitos utilizados:
 
 Troca de variáveis
 Percurso de arrays bidimensionais
@@ -60,7 +60,7 @@ Manipulação de memória
 
 Aplica um efeito de desfoque calculando a média dos pixels vizinhos.
 
-Conceitos utilizados:
+### Conceitos utilizados:
 
 Matrizes 2D
 Cópia temporária da imagem
@@ -84,7 +84,7 @@ Depois calcula a intensidade da borda usando:
 
 sqrt(Gx² + Gy²)
 
-Conceitos utilizados:
+### Conceitos utilizados:
 
 Convolução
 Processamento digital de imagens
@@ -97,7 +97,7 @@ Programa responsável por recuperar imagens JPEG apagadas de um cartão de memó
 
 # Funcionamento
 
-O programa:
+### O programa:
 
 Lê o arquivo em blocos de 512 bytes
 Identifica assinaturas JPEG
@@ -116,7 +116,7 @@ Programa que modifica o volume de arquivos .wav.
 
 # Funcionamento
 
-O programa:
+### O programa:
 
 Copia o cabeçalho do arquivo .wav
 Lê cada amostra de áudio
