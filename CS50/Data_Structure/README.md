@@ -209,3 +209,4 @@ Desenvolvido como parte do currículo **CC.50 - Introdução à Ciência da Comp
 
 *"Data structures are the backbone of efficient algorithms."*
 ```
+Gustavo Sacomani Rafael
