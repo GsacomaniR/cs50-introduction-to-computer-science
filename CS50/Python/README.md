@@ -174,4 +174,3 @@ Gustavo Sacomani Rafael - Estudante do curso CC50
 ---
 
 Se este repositório te ajudou, considere dar uma estrela!
-```
