@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>TechInnovate | Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="index.html">🚀 TechInnovate</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h1 class="text-center mb-5">Our Success Stories</h1>
+
+        <!-- Carousel Component -->
+        <div id="portfolioCarousel" class="carousel slide mb-5" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#portfolioCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#portfolioCarousel" data-slide-to="1"></li>
+                <li data-target="#portfolioCarousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="carousel-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Built a scalable e-commerce solution handling 100k+ daily transactions for a major retailer.</p>
+                        <span class="badge badge-success">Results: 150% growth</span>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-content">
+                        <h3>Healthcare AI System</h3>
+                        <p>Developed diagnostic AI that reduced patient wait times by 60% at a leading hospital.</p>
+                        <span class="badge badge-success">Results: 10k+ patients helped</span>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="carousel-content">
+                        <h3>FinTech App</h3>
+                        <p>Mobile banking app with biometric security, serving 500k+ active users.</p>
+                        <span class="badge badge-success">Results: 4.8★ rating</span>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#portfolioCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </a>
+            <a class="carousel-control-next" href="#portfolioCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item" data-project="1">
+                    <h4>TaskFlow</h4>
+                    <p>Project management SaaS</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item" data-project="2">
+                    <h4>SmartHome IoT</h4>
+                    <p>Connected home solution</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="portfolio-item" data-project="3">
+                    <h4>EduTech VR</h4>
+                    <p>Virtual learning platform</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 TechInnovate. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
