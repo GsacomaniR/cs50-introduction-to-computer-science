@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Interativo - Trivia</title>
+    <style>
+        /* Estilos CSS personalizados */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .part {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            border-left: 5px solid #667eea;
+        }
+
+        .part-title {
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        /* Estilos para os botões de múltipla escolha */
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .option-btn {
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .option-btn:hover {
+            transform: translateX(5px);
+            background: #e8e8e8;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .feedback-correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback-incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Estilos para a pergunta de resposta livre */
+        .free-answer-container {
+            margin: 20px 0;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1em;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .confirm-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        /* Estilos para feedbacks específicos */
+        .free-feedback {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Estilos para cores dos inputs quando corretos/incorretos */
+        .input-correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+
+        .input-incorrect {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        /* Botões desabilitados */
+        .option-btn.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Seção opcional para adicionar mais perguntas */
+        .extra-questions {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #e0e0e0;
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .part {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .option-btn {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Interativo</h1>
+        <p style="text-align: center; color: #666; margin-bottom: 30px;">Teste seus conhecimentos!</p>
+
+        <!-- PARTE 1: Pergunta de múltipla escolha -->
+        <div class="part">
+            <div class="part-title">Parte 1 - Múltipla Escolha</div>
+
+            <h3>Qual é a capital do Brasil?</h3>
+
+            <div class="options-container">
+                <button class="option-btn" data-answer="incorrect">Rio de Janeiro</button>
+                <button class="option-btn" data-answer="incorrect">São Paulo</button>
+                <button class="option-btn" data-answer="correct">Brasília</button>
+                <button class="option-btn" data-answer="incorrect">Salvador</button>
+            </div>
+
+            <div id="mcFeedback" class="feedback"></div>
+        </div>
+
+        <!-- PARTE 2: Pergunta de resposta livre -->
+        <div class="part">
+            <div class="part-title">Parte 2 - Resposta Livre</div>
+
+            <h3>Qual é o maior planeta do Sistema Solar?</h3>
+
+            <div class="free-answer-container">
+                <input type="text" id="freeAnswer" class="answer-input" placeholder="Digite sua resposta aqui...">
+                <button id="confirmBtn" class="confirm-btn">Confirmar Resposta</button>
+                <div id="freeFeedback" class="free-feedback"></div>
+            </div>
+        </div>
+
+        <!-- PARTE OPCIONAL: Perguntas extras (bônus) -->
+        <div class="extra-questions">
+            <details>
+                <summary style="cursor: pointer; color: #667eea; font-weight: bold; padding: 10px;">➕ Desafio Extra - Mais perguntas!</summary>
+
+                <!-- Pergunta extra 1: Múltipla escolha -->
+                <div class="part" style="margin-top: 20px;">
+                    <h3>Qual é o animal mais rápido do mundo?</h3>
+                    <div class="options-container">
+                        <button class="option-btn-extra" data-extra="incorrect">Leão</button>
+                        <button class="option-btn-extra" data-extra="correct">Falcão-peregrino</button>
+                        <button class="option-btn-extra" data-extra="incorrect">Guepardo</button>
+                        <button class="option-btn-extra" data-extra="incorrect">Águia</button>
+                    </div>
+                    <div id="extraFeedback1" class="feedback"></div>
+                </div>
+
+                <!-- Pergunta extra 2: Resposta livre -->
+                <div class="part">
+                    <h3>Qual é o nome do processo pelo qual as plantas produzem seu próprio alimento usando luz solar?</h3>
+                    <div class="free-answer-container">
+                        <input type="text" id="extraFreeAnswer" class="answer-input" placeholder="Digite sua resposta aqui...">
+                        <button id="extraConfirmBtn" class="confirm-btn">Confirmar Resposta</button>
+                        <div id="extraFreeFeedback" class="free-feedback"></div>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // PARTE 1: Lógica para perguntas de múltipla escolha
+        // ============================================
+
+        // Seleciona todos os botões da primeira pergunta
+        const mcButtons = document.querySelectorAll('.option-btn');
+        const mcFeedback = document.getElementById('mcFeedback');
+
+        // Variável para controlar se a pergunta já foi respondida (evita múltiplas mudanças de cor)
+        let isMcQuestionAnswered = false;
+
+        // Função para processar a resposta de múltipla escolha
+        function handleMultipleChoice(event) {
+            // Se a pergunta já foi respondida, não faz nada
+            if (isMcQuestionAnswered) {
+                return;
+            }
+
+            const button = event.target;
+            const answer = button.getAttribute('data-answer');
+
+            // Desabilita todos os botões após a resposta
+            mcButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('disabled');
+            });
+
+            // Processa a resposta
+            if (answer === 'correct') {
+                // Resposta correta: botão fica verde
+                button.style.backgroundColor = '#28a745';
+                button.style.borderColor = '#28a745';
+                button.style.color = 'white';
+                mcFeedback.textContent = 'Correto!';
+                mcFeedback.className = 'feedback feedback-correct';
+            } else {
+                // Resposta incorreta: botão fica vermelho
+                button.style.backgroundColor = '#dc3545';
+                button.style.borderColor = '#dc3545';
+                button.style.color = 'white';
+                mcFeedback.textContent = 'Incorreto. A resposta correta é Brasília!';
+                mcFeedback.className = 'feedback feedback-incorrect';
+
+                // Opcional: Destacar o botão correto em verde para aprendizado
+                const correctButton = Array.from(mcButtons).find(btn => btn.getAttribute('data-answer') === 'correct');
+                if (correctButton) {
+                    correctButton.style.backgroundColor = '#28a745';
+                    correctButton.style.borderColor = '#28a745';
+                    correctButton.style.color = 'white';
+                }
+            }
+
+            isMcQuestionAnswered = true;
+        }
+
+        // Adiciona event listeners aos botões de múltipla escolha
+        mcButtons.forEach(button => {
+            button.addEventListener('click', handleMultipleChoice);
+        });
+
+        // ============================================
+        // PARTE 2: Lógica para pergunta de resposta livre
+        // ============================================
+
+        const freeAnswerInput = document.getElementById('freeAnswer');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const freeFeedback = document.getElementById('freeFeedback');
+
+        // Resposta correta (case insensitive e ignorando espaços extras)
+        const CORRECT_ANSWER = "júpiter";
+
+        // Função para normalizar a resposta (remover acentos, espaços extras, converter para minúsculas)
+        function normalizeAnswer(answer) {
+            return answer.trim().toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '') // Remove acentos
+                .replace(/[^\w\s]/g, ''); // Remove pontuação
+        }
+
+        // Função para verificar se a resposta está correta
+        function isAnswerCorrect(userAnswer) {
+            const normalized = normalizeAnswer(userAnswer);
+            return normalized === CORRECT_ANSWER ||
+                   normalized === "jupiter" || // Sem acento
+                   normalized === "júpiter";
+        }
+
+        // Função para lidar com a confirmação da resposta livre
+        function handleFreeAnswer() {
+            const userAnswer = freeAnswerInput.value;
+
+            if (!userAnswer.trim()) {
+                freeFeedback.textContent = '⚠️ Por favor, digite uma resposta!';
+                freeFeedback.className = 'free-feedback feedback-incorrect';
+                return;
+            }
+
+            if (isAnswerCorrect(userAnswer)) {
+                // Resposta correta: input fica verde
+                freeAnswerInput.classList.remove('input-incorrect');
+                freeAnswerInput.classList.add('input-correct');
+                freeFeedback.textContent = 'Correto! Júpiter é o maior planeta do Sistema Solar!';
+                freeFeedback.className = 'free-feedback feedback-correct';
+            } else {
+                // Resposta incorreta: input fica vermelho
+                freeAnswerInput.classList.remove('input-correct');
+                freeAnswerInput.classList.add('input-incorrect');
+                freeFeedback.textContent = 'Incorreto! A resposta correta é Júpiter.';
+                freeFeedback.className = 'free-feedback feedback-incorrect';
+            }
+
+            // Desabilita o botão após a resposta (opcional)
+            // confirmBtn.disabled = true;
+            // confirmBtn.style.opacity = '0.6';
+        }
+
+        // Adiciona event listener ao botão de confirmação
+        confirmBtn.addEventListener('click', handleFreeAnswer);
+
+        // Permite que o usuário pressione Enter no campo de input para confirmar
+        freeAnswerInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                handleFreeAnswer();
+            }
+        });
+
+        // ============================================
+        // PARTE EXTRA: Perguntas adicionais (opcional)
+        // ============================================
+
+        // Pergunta extra 1: Múltipla escolha
+        const extraButtons = document.querySelectorAll('.option-btn-extra');
+        const extraFeedback1 = document.getElementById('extraFeedback1');
+        let isExtraMcAnswered = false;
+
+        function handleExtraMultipleChoice(event) {
+            if (isExtraMcAnswered) return;
+
+            const button = event.target;
+            const answer = button.getAttribute('data-extra');
+
+            extraButtons.forEach(btn => {
+                btn.disabled = true;
+                btn.classList.add('disabled');
+            });
+
+            if (answer === 'correct') {
+                button.style.backgroundColor = '#28a745';
+                button.style.borderColor = '#28a745';
+                button.style.color = 'white';
+                extraFeedback1.textContent = 'Correto! O falcão-peregrino pode atingir mais de 320 km/h!';
+                extraFeedback1.className = 'feedback feedback-correct';
+            } else {
+                button.style.backgroundColor = '#dc3545';
+                button.style.borderColor = '#dc3545';
+                button.style.color = 'white';
+                extraFeedback1.textContent = 'Incorreto! O animal mais rápido é o falcão-peregrino.';
+                extraFeedback1.className = 'feedback feedback-incorrect';
+
+                const correctExtraBtn = Array.from(extraButtons).find(btn => btn.getAttribute('data-extra') === 'correct');
+                if (correctExtraBtn) {
+                    correctExtraBtn.style.backgroundColor = '#28a745';
+                    correctExtraBtn.style.borderColor = '#28a745';
+                    correctExtraBtn.style.color = 'white';
+                }
+            }
+
+            isExtraMcAnswered = true;
+        }
+
+        extraButtons.forEach(button => {
+            button.addEventListener('click', handleExtraMultipleChoice);
+        });
+
+        // Pergunta extra 2: Resposta livre
+        const extraFreeInput = document.getElementById('extraFreeAnswer');
+        const extraConfirmBtn = document.getElementById('extraConfirmBtn');
+        const extraFreeFeedback = document.getElementById('extraFreeFeedback');
+
+        const EXTRA_CORRECT_ANSWER = "fotossíntese";
+
+        function isExtraAnswerCorrect(answer) {
+            const normalized = normalizeAnswer(answer);
+            return normalized === EXTRA_CORRECT_ANSWER ||
+                   normalized === "fotossintese" ||
+                   normalized === "fotossintese";
+        }
+
+        function handleExtraFreeAnswer() {
+            const userAnswer = extraFreeInput.value;
+
+            if (!userAnswer.trim()) {
+                extraFreeFeedback.textContent = '⚠️ Por favor, digite uma resposta!';
+                extraFreeFeedback.className = 'free-feedback feedback-incorrect';
+                return;
+            }
+
+            if (isExtraAnswerCorrect(userAnswer)) {
+                extraFreeInput.classList.remove('input-incorrect');
+                extraFreeInput.classList.add('input-correct');
+                extraFreeFeedback.textContent = 'Correto! A fotossíntese é essencial para a vida na Terra!';
+                extraFreeFeedback.className = 'free-feedback feedback-correct';
+            } else {
+                extraFreeInput.classList.remove('input-correct');
+                extraFreeInput.classList.add('input-incorrect');
+                extraFreeFeedback.textContent = 'Incorreto! A resposta correta é Fotossíntese.';
+                extraFreeFeedback.className = 'free-feedback feedback-incorrect';
+            }
+        }
+
+        extraConfirmBtn.addEventListener('click', handleExtraFreeAnswer);
+
+        extraFreeInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                handleExtraFreeAnswer();
+            }
+        });
+
+        // ============================================
+        // BÔNUS: Efeitos visuais e animações
+        // ============================================
+
+        // Adiciona um efeito de fade-in suave para os feedbacks
+        const style = document.createElement('style');
+        style.textContent = `
+            .feedback, .free-feedback {
+                animation: fadeInUp 0.4s ease-out;
+            }
+
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .option-btn, .confirm-btn {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .option-btn:active {
+                transform: scale(0.98);
+            }
+
+            .answer-input {
+                transition: all 0.3s ease;
+            }
+
+            details summary::-webkit-details-marker {
+                color: #667eea;
+            }
+
+            details summary {
+                transition: color 0.3s ease;
+            }
+
+            details summary:hover {
+                color: #5a67d8;
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Mensagem de boas-vindas no console
+        console.log('🎮 Quiz Trivia carregado! Divirta-se respondendo as perguntas!');
+
+        // Opcional: Reset das perguntas (não solicitado, mas útil)
+        // Função para resetar todas as perguntas - pode ser chamada via console se necessário
+        window.resetQuiz = function() {
+            // Reset Parte 1
+            isMcQuestionAnswered = false;
+            mcFeedback.textContent = '';
+            mcFeedback.className = 'feedback';
+            mcButtons.forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('disabled');
+                btn.style.backgroundColor = '';
+                btn.style.borderColor = '';
+                btn.style.color = '';
+            });
+
+            // Reset Parte 2
+            freeAnswerInput.value = '';
+            freeAnswerInput.classList.remove('input-correct', 'input-incorrect');
+            freeFeedback.textContent = '';
+            freeFeedback.className = 'free-feedback';
+
+            // Reset extras
+            isExtraMcAnswered = false;
+            extraFeedback1.textContent = '';
+            extraFeedback1.className = 'feedback';
+            extraButtons.forEach(btn => {
+                btn.disabled = false;
+                btn.classList.remove('disabled');
+                btn.style.backgroundColor = '';
+                btn.style.borderColor = '';
+                btn.style.color = '';
+            });
+
+            extraFreeInput.value = '';
+            extraFreeInput.classList.remove('input-correct', 'input-incorrect');
+            extraFreeFeedback.textContent = '';
+            extraFreeFeedback.className = 'free-feedback';
+
+            console.log('🔄 Quiz resetado!');
+        };
+
+        // Adiciona um tooltip informativo (bônus)
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            if (!btn.disabled) {
+                btn.setAttribute('title', 'Clique para responder');
+            }
+        });
+    </script>
+</body>
+</html>
