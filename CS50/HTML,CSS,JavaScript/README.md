@@ -135,6 +135,7 @@ Quiz interativo de conhecimentos gerais com dois tipos de perguntas: múltipla e
 
 ## 👤 Autor
 
+Gustavo Sacomani Rafael
 Projeto desenvolvido como parte do curso **CC50 (Harvard/CS50 adaptado)** – uma introdução à Ciência da Computação.
 
 ---
