@@ -6,6 +6,7 @@ Este repositório contém dois projetos desenvolvidos como parte do curso CC50 (
 ## 📁 Estrutura do Projeto
 
 ```
+```
 cc50-flask-projects/
 ├── birthdays/            # Gerenciador de aniversários
 │   ├── app.py            # Aplicação principal
@@ -19,6 +20,7 @@ cc50-flask-projects/
     ├── requirements.txt  # Dependências do projeto
     ├── static/           # Arquivos estáticos (CSS, imagens)
     └── templates/        # Templates HTML
+```
 ```
 
 ## Birthday Tracker
