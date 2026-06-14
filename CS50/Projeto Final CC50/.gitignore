@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+env/
+.env
+*.log
+
+# Database
+*.db.backup
+*.db.migrated
+storage/tasks.json
+storage/teste.db
+storage/*.backup
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Test files
+test_*.py
+*_test.py
+performance_*.py
+tempCodeRunnerFile.py
+tests/performance_teste.py
+
+# Reports
+relatorio_*.txt
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Project specific
+web/__init__.py
+arq.gitignore
+get-pip.py
+
+# Virtual Environment
+venv/
+env/
+.venv/
+
+# Cache
+*.pyc
+*.pyo
+*.pyd
