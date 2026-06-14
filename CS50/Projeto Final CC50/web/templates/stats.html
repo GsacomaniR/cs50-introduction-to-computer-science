@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>📊 Estatísticas de Estudo</h2>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.total_tasks }}</div>
+        <div class="stat-label">Total de Tarefas</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.completed_tasks }}</div>
+        <div class="stat-label">Tarefas Concluídas</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ "%.1f"|format(stats.completion_rate) }}%</div>
+        <div class="stat-label">Taxa de Conclusão</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.due_today }}</div>
+        <div class="stat-label">Para Revisar Hoje</div>
+    </div>
+</div>
+
+<h3>📈 Distribuição por Prioridade</h3>
+<div class="priority-stats">
+    <div class="priority-stat alta">
+        <span>🔴 Alta:</span>
+        <strong>{{ stats.priorities.alta or 0 }}</strong>
+    </div>
+    <div class="priority-stat media">
+        <span>🟡 Média:</span>
+        <strong>{{ stats.priorities.media or 0 }}</strong>
+    </div>
+    <div class="priority-stat baixa">
+        <span>🟢 Baixa:</span>
+        <strong>{{ stats.priorities.baixa or 0 }}</strong>
+    </div>
+</div>
+
+{% if due_tasks %}
+<h3>🧠 Revisões Pendentes</h3>
+<div class="due-tasks">
+    {% for task in due_tasks %}
+    <div class="task-card">
+        <strong>{{ task.title }}</strong>
+        <span class="due-badge">⚠️ Precisa revisar hoje!</span>
+        <a href="/task/review/{{ task.id }}" class="btn-small btn-info">Revisar Agora</a>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<h3>💡 Dicas de Produtividade</h3>
+<div class="tips">
+    {% for tip in tips %}
+    <div class="tip-card">{{ tip }}</div>
+    {% endfor %}
+</div>
+{% endblock %}

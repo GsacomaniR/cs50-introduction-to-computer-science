@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="fas fa-brain"></i> Revisão Espaçada</h2>
+    <p>Sistema baseado no método científico de memorização de Ebbinghaus</p>
+</div>
+
+<div class="info-banner" style="background: rgba(30, 41, 59, 0.9); margin-bottom: 30px;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+        <div>
+            <h3 style="color: #f1f5f9; margin-bottom: 10px;">📖 Como funciona?</h3>
+            <p style="color: #94a3b8;">As revisões são agendadas em intervalos crescentes para fixar o aprendizado na memória de longo prazo.</p>
+        </div>
+        <div class="intervals">
+            <span class="interval" style="background: #8b5cf6; color: white;">1 dia</span>
+            <span style="color: #a78bfa;">→</span>
+            <span class="interval" style="background: #8b5cf6; color: white;">3 dias</span>
+            <span style="color: #a78bfa;">→</span>
+            <span class="interval" style="background: #8b5cf6; color: white;">7 dias</span>
+            <span style="color: #a78bfa;">→</span>
+            <span class="interval" style="background: #8b5cf6; color: white;">14 dias</span>
+            <span style="color: #a78bfa;">→</span>
+            <span class="interval" style="background: #8b5cf6; color: white;">30 dias</span>
+        </div>
+    </div>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card" style="background: linear-gradient(135deg, #4c1d95, #6b21a5);">
+        <div class="stat-number">{{ stats.total_tasks }}</div>
+        <div class="stat-label">Total de Tarefas</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #1e3a5f, #1e40af);">
+        <div class="stat-number">{{ stats.completed_tasks }}</div>
+        <div class="stat-label">Concluídas</div>
+    </div>
+    <div class="stat-card" style="background: linear-gradient(135deg, #9d174d, #831843);">
+        <div class="stat-number">{{ stats.tasks_with_review }}</div>
+        <div class="stat-label">Com Revisão</div>
+    </div>
+</div>
+
+{% if due_tasks %}
+<div style="margin: 40px 0;">
+    <h3 style="color: #f87171; margin-bottom: 20px;">
+        <i class="fas fa-exclamation-triangle"></i> Tarefas que precisam de revisão HOJE
+    </h3>
+    <div>
+        {% for task in due_tasks %}
+        <div class="task-card" style="background: rgba(30, 41, 59, 0.9); border-left: 4px solid #f87171;">
+            <div>
+                <div class="task-title" style="color: #f1f5f9;">{{ task.title }}</div>
+                <div class="task-meta" style="color: #94a3b8;">
+                    <span><i class="fas fa-calendar"></i> Criada: {{ task.created_at[:10] }}</span>
+                    {% if task.last_reviewed %}
+                    <span><i class="fas fa-clock"></i> Última revisão: {{ task.last_reviewed[:10] }}</span>
+                    {% else %}
+                    <span><i class="fas fa-star"></i> Nunca revisada</span>
+                    {% endif %}
+                </div>
+            </div>
+            <a href="/task/review/{{ task.id }}" class="btn-icon btn-info" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                <i class="fas fa-brain"></i> Revisar Agora
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<div class="empty-state" style="background: rgba(30, 41, 59, 0.6); margin: 40px 0;">
+    <div class="empty-icon">🎉</div>
+    <h3 style="color: #f1f5f9;">Nenhuma revisão pendente!</h3>
+    <p style="color: #94a3b8;">Você está em dia com seus estudos. Continue assim!</p>
+    <a href="/tasks" class="btn-primary" style="margin-top: 20px; display: inline-block;">
+        <i class="fas fa-tasks"></i> Ver minhas tarefas
+    </a>
+</div>
+{% endif %}
+
+{% if upcoming_reviews %}
+<div style="margin: 40px 0;">
+    <h3 style="color: #f1f5f9; margin-bottom: 20px;">
+        <i class="fas fa-calendar-alt"></i> Próximas Revisões
+    </h3>
+    <div class="upcoming-list" style="background: rgba(30, 41, 59, 0.6);">
+        {% for task in upcoming_reviews %}
+        <div class="upcoming-item">
+            <span class="upcoming-title" style="color: #f1f5f9;">{{ task.title }}</span>
+            <span class="upcoming-date" style="color: #fbbf24;">📅 {{ task.next_review }}</span>
+            <span class="upcoming-count" style="color: #a78bfa;">🔄 Revisão #{{ task.review_count + 1 }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<div class="tips-card" style="background: linear-gradient(135deg, #4c1d95, #6b21a5, #9d174d);">
+    <h3 style="color: white; margin-bottom: 20px;">
+        <i class="fas fa-lightbulb"></i> Dicas para revisão eficaz
+    </h3>
+    <ul style="list-style: none; padding-left: 0;">
+        <li style="padding: 8px 0; color: #e2e8f0;">
+            <i class="fas fa-check-circle" style="color: #34d399; margin-right: 8px;"></i> 
+            Revise ativamente: tente lembrar antes de consultar o material
+        </li>
+        <li style="padding: 8px 0; color: #e2e8f0;">
+            <i class="fas fa-check-circle" style="color: #34d399; margin-right: 8px;"></i> 
+            Respeite os intervalos sugeridos pelo sistema
+        </li>
+        <li style="padding: 8px 0; color: #e2e8f0;">
+            <i class="fas fa-check-circle" style="color: #34d399; margin-right: 8px;"></i> 
+            Consistência é mais eficaz que longas sessões
+        </li>
+        <li style="padding: 8px 0; color: #e2e8f0;">
+            <i class="fas fa-check-circle" style="color: #34d399; margin-right: 8px;"></i> 
+            Autoavalie sua dificuldade para ajustar os intervalos
+        </li>
+    </ul>
+</div>
+{% endblock %}

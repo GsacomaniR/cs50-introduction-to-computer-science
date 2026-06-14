@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h2><i class="fas fa-tasks"></i> Minhas Tarefas</h2>
+    <p>Gerencie suas atividades de estudo de forma organizada</p>
+</div>
+
+<div class="btn-group" style="margin-bottom: 32px;">
+    <a href="/task/add" class="btn btn-primary">
+        <i class="fas fa-plus"></i> Nova Tarefa
+    </a>
+    <button onclick="location.reload()" class="btn btn-outline">
+        <i class="fas fa-sync-alt"></i> Atualizar
+    </button>
+</div>
+
+<div>
+    <h3><i class="fas fa-clock"></i> Pendentes ({{ pending|length }})</h3>
+    {% if pending %}
+        {% for task in pending %}
+        <div class="task-card">
+            <div>
+                <div class="task-title">{{ task.title }}</div>
+                <div class="task-meta">
+                    <span class="priority-badge priority-{{ task.priority }}">
+                        {% if task.priority == 'alta' %}🔴 Alta
+                        {% elif task.priority == 'media' %}🟡 Média
+                        {% else %}🟢 Baixa{% endif %}
+                    </span>
+                    <span><i class="fas fa-calendar"></i> Vence: {{ task.due_date }}</span>
+                    {% if task.due_date < now %}
+                        <span style="color: #f87171;"><i class="fas fa-exclamation-triangle"></i> Atrasada!</span>
+                    {% endif %}
+                    {% if task.next_review %}
+                        <span><i class="fas fa-brain"></i> Próx. revisão: {{ task.next_review }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            <div style="display: flex; gap: 8px;">
+                <a href="/task/complete/{{ task.id }}" class="btn-icon btn-success">
+                    <i class="fas fa-check"></i> Concluir
+                </a>
+                <a href="/task/review/{{ task.id }}" class="btn-icon btn-info">
+                    <i class="fas fa-brain"></i> Revisar
+                </a>
+                <a href="/task/delete/{{ task.id }}" class="btn-icon btn-danger" onclick="return confirm('Tem certeza?')">
+                    <i class="fas fa-trash"></i> Remover
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">🎉</div>
+            <h3>Nenhuma tarefa pendente!</h3>
+            <p>Que tal adicionar uma nova tarefa?</p>
+            <a href="/task/add" class="btn btn-primary" style="margin-top: 20px;">
+                <i class="fas fa-plus"></i> Nova Tarefa
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<div style="margin-top: 40px;">
+    <h3><i class="fas fa-check-circle"></i> Concluídas ({{ completed|length }})</h3>
+    {% if completed %}
+        {% for task in completed %}
+        <div class="task-card" style="opacity: 0.7;">
+            <div>
+                <div class="task-title">✓ {{ task.title }}</div>
+                <div class="task-meta">
+                    <span><i class="fas fa-calendar"></i> Criada: {{ task.created_at[:10] }}</span>
+                </div>
+            </div>
+            <div>
+                <a href="/task/delete/{{ task.id }}" class="btn-icon btn-danger" onclick="return confirm('Tem certeza?')">
+                    <i class="fas fa-trash"></i> Remover
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p style="color: rgba(255,255,255,0.5); text-align: center; padding: 20px;">
+            Nenhuma tarefa concluída ainda
+        </p>
+    {% endif %}
+</div>
+{% endblock %}

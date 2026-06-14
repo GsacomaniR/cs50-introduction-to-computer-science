@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-badge">✨ Organização Inteligente</div>
+    <h2>Bem-vindo ao StudyFlow</h2>
+    <p>Transforme seus estudos com o método científico de revisão espaçada</p>
+</div>
+
+<div class="cards-grid">
+    <div class="card" onclick="window.location.href='/tasks'">
+        <div class="card-icon">📋</div>
+        <h3>Tarefas</h3>
+        <p>Organize e gerencie suas atividades de estudo de forma simples e eficiente</p>
+        <div class="card-action">Gerenciar Tarefas →</div>
+    </div>
+    
+    <div class="card" onclick="window.location.href='/review'">
+        <div class="card-icon">🧠</div>
+        <h3>Revisão Espaçada</h3>
+        <p>Algoritmo científico para fixar conteúdo na memória de longo prazo</p>
+        <div class="card-action">Iniciar Revisões →</div>
+    </div>
+    
+    <div class="card" onclick="window.location.href='/stats'">
+        <div class="card-icon">📊</div>
+        <h3>Estatísticas</h3>
+        <p>Acompanhe seu progresso e veja sua evolução nos estudos</p>
+        <div class="card-action">Ver Métricas →</div>
+    </div>
+</div>
+
+<div class="dashboard">
+    <h3>📈 Seu Progresso</h3>
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-number" id="pending-count">0</div>
+            <div class="stat-label">Tarefas Pendentes</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="completed-today">0</div>
+            <div class="stat-label">Concluídas Hoje</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="due-review">0</div>
+            <div class="stat-label">Para Revisar</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function updateDashboard() {
+        fetch('/api/web/dashboard-stats')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('pending-count').textContent = data.pending;
+                document.getElementById('completed-today').textContent = data.completed_today;
+                document.getElementById('due-review').textContent = data.due_review;
+            })
+            .catch(err => console.error('Erro:', err));
+    }
+    
+    updateDashboard();
+    setInterval(updateDashboard, 10000);
+</script>
+{% endblock %}

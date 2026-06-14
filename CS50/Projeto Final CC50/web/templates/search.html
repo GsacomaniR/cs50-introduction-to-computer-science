@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>🔍 Buscar Tarefas</h2>
+
+<form method="GET" action="/search" class="search-form">
+    <input type="text" name="q" value="{{ query }}" placeholder="Digite uma palavra-chave..." class="form-control">
+    <button type="submit" class="btn btn-primary">Buscar</button>
+</form>
+
+{% if query %}
+    <h3>Resultados para "{{ query }}"</h3>
+    {% if results %}
+        {% for task in results %}
+        <div class="task-card">
+            <div class="task-title">
+                <strong>#{{ task.id }}</strong> {{ task.title }}
+            </div>
+            <div class="task-details">
+                <span class="priority-badge {{ task.priority }}">
+                    {% if task.priority == 'alta' %}🔴 Alta
+                    {% elif task.priority == 'media' %}🟡 Média
+                    {% else %}🟢 Baixa{% endif %}
+                </span>
+                <span>📅 {{ task.due_date }}</span>
+                {% if task.completed %}
+                <span>✅ Concluída</span>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty-message">Nenhuma tarefa encontrada para "{{ query }}"</p>
+    {% endif %}
+{% endif %}
+{% endblock %}
