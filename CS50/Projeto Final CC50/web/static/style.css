@@ -1,0 +1,373 @@
+/* Página de Tarefas - Botões Modernos */
+.page-header {
+    margin-bottom: 32px;
+}
+
+.page-header h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.page-header p {
+    color: var(--text-gray);
+}
+
+/* Botões de ação modernos */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 60px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    border: none;
+    background: white;
+    color: var(--text-dark);
+    border: 1px solid var(--border);
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.action-btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    border: none;
+}
+
+.action-btn-primary:hover {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.action-btn-success {
+    background: linear-gradient(135deg, var(--success), #059669);
+    color: white;
+    border: none;
+}
+
+.action-btn-danger {
+    background: linear-gradient(135deg, var(--danger), #dc2626);
+    color: white;
+    border: none;
+}
+
+.action-btn-info {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+    border: none;
+}
+
+/* Task Cards modernos */
+.task-card-modern {
+    background: white;
+    border-radius: 24px;
+    padding: 20px 24px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.task-card-modern:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary-light);
+}
+
+.task-card-modern.priority-high {
+    border-left: 4px solid var(--danger);
+}
+
+.task-card-modern.priority-medium {
+    border-left: 4px solid var(--warning);
+}
+
+.task-card-modern.priority-low {
+    border-left: 4px solid var(--success);
+}
+
+.task-card-modern.completed {
+    opacity: 0.7;
+    background: #f8fafc;
+}
+
+.task-content {
+    flex: 1;
+}
+
+.task-title-modern {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: var(--text-dark);
+}
+
+.task-meta-modern {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+}
+
+.task-actions-modern {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Botões pequenos modernos */
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    background: #f1f5f9;
+    color: var(--text-dark);
+}
+
+.btn-icon:hover {
+    transform: translateY(-1px);
+    filter: brightness(0.95);
+}
+
+.btn-icon-success {
+    background: linear-gradient(135deg, var(--success), #059669);
+    color: white;
+}
+
+.btn-icon-danger {
+    background: linear-gradient(135deg, var(--danger), #dc2626);
+    color: white;
+}
+
+.btn-icon-info {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+    color: white;
+}
+
+/* Estilos para página de revisão */
+.info-banner {
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.intervals {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.interval {
+    background: white;
+    padding: 6px 14px;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.stats-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+}
+
+.stat-mini-card {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 20px;
+    padding: 24px;
+    text-align: center;
+    color: white;
+}
+
+.stat-mini-value {
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.stat-mini-label {
+    font-size: 0.75rem;
+    opacity: 0.9;
+    margin-top: 8px;
+}
+
+.due-section {
+    margin-bottom: 40px;
+}
+
+.due-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.due-icon {
+    font-size: 1.5rem;
+}
+
+.task-card-review {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.task-card-review:hover {
+    transform: translateX(4px);
+    box-shadow: var(--shadow);
+}
+
+.task-card-review.priority-high {
+    border-left: 4px solid var(--danger);
+}
+
+.task-card-review.priority-medium {
+    border-left: 4px solid var(--warning);
+}
+
+.task-card-review.priority-low {
+    border-left: 4px solid var(--success);
+}
+
+.btn-review {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 10px 24px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-review:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 24px;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 24px;
+    margin: 32px 0;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: 16px;
+}
+
+.upcoming-section {
+    margin: 40px 0;
+    padding: 24px;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border-radius: 20px;
+}
+
+.upcoming-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.upcoming-item {
+    background: white;
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.upcoming-title {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.upcoming-date {
+    color: var(--warning);
+    font-size: 0.875rem;
+}
+
+.upcoming-count {
+    color: var(--primary);
+    font-size: 0.875rem;
+}
+
+.tips-card {
+    background: linear-gradient(135deg, var(--primary), var(--purple));
+    border-radius: 20px;
+    padding: 28px;
+    color: white;
+    margin-top: 32px;
+}
+
+.tips-card h3 {
+    margin-bottom: 20px;
+}
+
+.tips-card ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tips-card li {
+    padding: 8px 0;
+}
+
+.empty-message {
+    text-align: center;
+    padding: 32px;
+    color: var(--text-gray);
+}
